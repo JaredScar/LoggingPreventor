@@ -32,18 +32,17 @@ public class Main extends JavaPlugin implements Listener {
     private HashMap<UUID, UUID> vTracker = new HashMap<UUID, UUID>();
     public void onEnable() {
         this.lM = new logManager(this);
-        getConfig().options().copyDefaults(true);
         saveDefaultConfig();
         m = this;
         this.getServer().getPluginManager().registerEvents(this, this);
         //TODO Add values back to spots.
         int i = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new BukkitRunnable() {
             public void run() {
-                for(Iterator it = m.combTagged.keySet().iterator(); it.hasNext();) {     System.out.print("YEs 2");
+                for(Iterator it = m.combTagged.keySet().iterator(); it.hasNext();) {
                         UUID ids = (UUID) it.next();
                         Double d = getPlayer(ids);
                         putPlayer(ids, d- 1D);
-                        if (getPlayer(ids) <= 0D) { System.out.print("YEs 3");
+                        if (getPlayer(ids) <= 0D) {
                             it.remove();
                     }
                 }
